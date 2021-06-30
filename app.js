@@ -1,10 +1,17 @@
 const express = require('express');
 const routes = require('./routes/index');
+const session = require('express-session');
 
 const app = express()
 const port = 3000
 
 app.set('view engine', 'ejs')
+app.use(session({
+  secret: 'keLon - kelas onlen',
+  resave: false,
+  saveUninitialized: true
+}))
+
 app.use(express.urlencoded({extended:true}))
 app.use('/', routes)
 

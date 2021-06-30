@@ -7,8 +7,18 @@
     <title>Class - List</title>
 </head>
 <body>
+    <ul>
+        <li style="display: inline;"><a href="/classes">Class</a></li>
+        <li style="display: inline;"> | </li>
+        <li style="display: inline;"> <a href="/user/instructors">Instructor</a></li>
+        <li style="display: inline;"> | </li>
+        <li style="display: inline;"><a href="/user/students">Student</a> </li>
+        <li style="display: inline;"> | </li>
+        <li style="display: inline;"><a href="/logout">Logout</a> </li>
+    </ul>
+    <hr>
     <h1>List Class</h1>
-    <hr><br>
+    <hr>
     <h2><a href="/classes/add">Add Class</a></h2>
     <table border="1">
         <thead>
@@ -26,8 +36,7 @@
                     <td><%= el.name_class %> </td>
                     <td><%= el.quota %> </td>
                     <td><%= el.level %> </td>
-                    <td><%= el.instructor %> </td>
-                    <td>Belom tau</td>
+                    <td><%= el.User.name %> </td>
                     <td><a href="/<%= el.id %>/enroll">Enroll</a></td>
                 </tr>
             <% }); %> 

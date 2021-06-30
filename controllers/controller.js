@@ -2,11 +2,16 @@ const {User} = require('../models/index');
 
 class Controller {
     static home(req, res) {
+        // console.log(req.session);
         res.render('home')
     }
 
     static login(req, res) {
         res.render('login')
+    }
+
+    static postLogin(req, res) {
+        res.redirect('/classes')
     }
 
     static register(req, res) {
@@ -28,13 +33,17 @@ class Controller {
         User
             .create(newUser)
             .then(data => {
-                res.redirect(`/${data.id}/classes`)
+                res.redirect(`/login`)
             })
             .catch(err => {
                 console.log(err);
                 res.send(err)
             })
-    }    
+    }
+    
+    static logout(req, res) {
+        res.redirect('/')
+    }
 }
 
 module.exports = Controller
