@@ -14,24 +14,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   UserClass.init({
-    ClassId: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'Class',
-        key: 'id'
-      },
-      onDelete: 'cascade',
-      onUpdate: 'cascade'
-    },
-    UserId: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'User',
-        key: 'id'
-      },
-      onDelete: 'cascade',
-      onUpdate: 'cascade'
-    }
+    ClassId:  DataTypes.INTEGER,     
+    UserId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'UserClass',
