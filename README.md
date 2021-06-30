@@ -1,2 +1,23 @@
 # kel-on
-test
+
+1. Association Many to Many (submit schema ke buddy-PP) ------ **DONE**
+2. CRUD ( CREATE, READ, UPDATE, DELETE )
+3. Static Method (Model)
+4. Instance Method (Model)
+5. Helper 
+6. Hooks
+7. MVP (explore)
+8. Middleware  *
+9. Session *
+10. Deploy pada Heroku (explore)
+
+    ✅ Deploy Heroku Anti Gagal (Arnold, FAQ P-1 Discord Channel)
+
+    [https://discord.com/channels/710709613380632636/717673874870763530/813716447414976532](https://discord.com/channels/710709613380632636/717673874870763530/813716447414976532)
+    👋 Official Documentation: 
+
+    [https://devcenter.heroku.com/articles/deploying-nodejs](https://devcenter.heroku.com/articles/deploying-nodejs)
+
+    [https://devcenter.heroku.com/articles/heroku-postgresql#provisioning-heroku-postgres](https://devcenter.heroku.com/articles/heroku-postgresql#provisioning-heroku-postgres) 
+    👋 Unofficial Articles: 
+    [https://medium.com/easyread/cara-deploy-express-dan-postrgres-ke-heroku-4b08e6bc1d64](https://medium.com/easyread/cara-deploy-express-dan-postrgres-ke-heroku-4b08e6bc1d64)
