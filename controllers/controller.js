@@ -28,13 +28,12 @@ class Controller {
         User
             .create(newUser)
             .then(data => {
-                res.redirect('/classes')
+                res.redirect(`/${data.id}/classes`)
             })
             .catch(err => {
                 console.log(err);
                 res.send(err)
             })
-        // res.render('register')
     }    
 }
 
