@@ -24,31 +24,27 @@
     <a href="/classes/add" class="btn btn-success">Add Class</a>
 
     <div class="row row-cols-1 row-cols-md-3 g-4">
-        <% listClass.forEach((el , i) => { %> 
+        <% result.Classes.forEach((el , i) => { %> 
         <div class="card h-100" >
             <img src="https://lh3.google.com/u/0/d/1N0QHReK2ed7NPZKVDWybrKsOds1npA7Q=w1364-h663-iv1" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title"><%=el.name_class%></h5>
-              <h6 class="card-title">by: <%=el.owner.name%></h6>
-              <h6 class="card-title">level: <%=starMaker(el.level)%></h6>
+              
+              <h6 class="card-title">level: <%=el.level%></h6>
 
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
               <p class="card-text">Sisa quota: <%=el.quota%></p>
               
-              <a href="/classes/<%=el.id%>/enroll" class="btn btn-primary">enroll</a>
-              <a href="/classes/<%=el.id%>/edit" class="btn btn-primary">edit</a>
-              
+              <a href="/classes/<%=el.id%>/delete" class="btn btn-primary">drop</a>
+              <a href="/classes/<%=el.id%>/chat" class="btn btn-primary disable">JoinChat</a>
+
             </div>
         </div>
         <%})%>
 
     </div>
 
-    <% if (err) { %>
-     <script>        
-        alert('<%= err%>')
-    </script>       
-    <% } %> 
+
 
 
 

@@ -1,6 +1,6 @@
 const { Class, User, UserClass } = require('../models/index');
 const { Op } = require("sequelize");
-
+const starMaker = require('../helpers/starMaker')
 class ClassController {
     static getAll(req, res) {
         let err = req.query.err
@@ -19,7 +19,7 @@ class ClassController {
                 }
             })
             .then(listClass => {
-                res.render('listClass', {listClass, err})
+                res.render('listClass', {listClass, err, starMaker})
             })
             .catch(err=> console.log(err))
     }
@@ -107,6 +107,47 @@ class ClassController {
         }
         // console.log(UserId, ClassId, is_instructor);
 
+    }
+
+    static getMyClasses(req,res){
+        let UserId = req.session.UserId
+
+        User.findByPk(UserId,{
+            include:{
+                model: Class
+            }
+        })
+            .then(result => res.render('myClasses', {result}))
+
+    }
+    static delete(req,res){
+        let ClassId = +req.params.ClassId
+        let UserId = req.session.UserId
+
+
+        UserClass.destroy({
+            where:{
+                [Op.and]:[
+                    {ClassId: ClassId},
+                    {UserId: UserId}
+                ]
+            }
+        })
+            .then(result => {
+                return Class.findByPk(ClassId)
+            })
+            .then(theClass => {
+                let quota = +theClass.quota + 1
+                return Class.update({
+                    quota
+                }, {
+                    where: {
+                        id: ClassId
+                    }
+                })
+            })
+            .then(res.redirect('/classes/myClasses'))
+            .catch(err=> console.log(err))
     }
 
 }

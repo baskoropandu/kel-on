@@ -11,6 +11,15 @@ module.exports = (sequelize, DataTypes) => {
      */
 
 
+    faceMaker(){
+      let lv = +this.level
+      let output = ``
+      for(let i = 0; i < lv; i++){
+        output += `㋡`
+      }
+      return output
+    }
+
     static associate(models) {
       // define association here
       User.hasMany(models.Class, { foreignKey: 'InstructorId', as:'classes' })
