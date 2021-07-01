@@ -57,19 +57,6 @@ module.exports = (sequelize, DataTypes) => {
                       as: 'classes'
                   }
                 })
-      /**
-       * User.findAll({
-            where:{
-                is_instructor: {
-                    [Op.eq]: 'true'
-                }
-            },
-            include:{
-                model: Class,
-                as: 'classes'
-            }
-        })
-       */
     }
   };
   User.init({
