@@ -1,5 +1,16 @@
 # kel-on
 
+1. home done
+2. login done
+3. register done
+4. classes done
+5. add classes done
+6. instructor done
+7. student done
+8. chat kelas
+
+
+
 1. Association Many to Many (submit schema ke buddy-PP) ------ **DONE**
 2. CRUD ( CREATE, READ, UPDATE, DELETE )
 3. Static Method (Model)

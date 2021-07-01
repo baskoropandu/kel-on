@@ -7,6 +7,7 @@ class ClassController {
             .findAll({
                 include: {
                     model: User,
+                    as: 'owner',
                     where: {
                         is_instructor: {
                             [Op.eq]: 'true'
@@ -16,9 +17,10 @@ class ClassController {
                 }
             })
             .then(listClass => {
-                console.log(listClass[0].User);
+                // console.log(listClass[0].User);
                 res.render('listClass', {listClass})
             })
+            .catch(err=> console.log(err))
     }
 
     static getAddClass(req, res) {

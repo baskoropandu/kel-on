@@ -11,7 +11,21 @@ class Controller {
     }
 
     static postLogin(req, res) {
-        res.redirect('/classes')
+        let email = req.body.email
+        let password = req.body.password
+
+        User.findAll({where:{email}})
+            .then(result=>{
+                if(result.length === 0){
+                    res.send('email not found')
+                }else if(result[0].password === password){
+                    res.redirect('/classes')
+                }else{
+                    res.send('wrong password')
+                }
+                // res.send(result)
+            })
+        // res.redirect('/classes')
     }
 
     static register(req, res) {

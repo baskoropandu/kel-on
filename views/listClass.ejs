@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
     <title>Class - List</title>
 </head>
 <body>
@@ -19,28 +21,32 @@
     <hr>
     <h1>List Class</h1>
     <hr>
-    <h2><a href="/classes/add">Add Class</a></h2>
-    <table border="1">
-        <thead>
-            <td>No</td>
-            <td>Nama Kelas</td>
-            <td>Quota</td>
-            <td>Level</td>
-            <td>Instruktur</td>
-            <td>Aksi</td>
-        </thead>
-        <tbody>
-            <% listClass.forEach((el , i) => { %> 
-                <tr>
-                    <td><%= i + 1 %> </td>
-                    <td><%= el.name_class %> </td>
-                    <td><%= el.quota %> </td>
-                    <td><%= el.level %> </td>
-                    <td><%= el.User.name %> </td>
-                    <td><a href="/<%= el.id %>/enroll">Enroll</a></td>
-                </tr>
-            <% }); %> 
-        </tbody>
-    </table>
+    <a href="/classes/add" class="btn btn-success">Add Class</a>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <% listClass.forEach((el , i) => { %> 
+        <div class="card h-100" >
+            <img src="https://lh3.google.com/u/0/d/1N0QHReK2ed7NPZKVDWybrKsOds1npA7Q=w1364-h663-iv1" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title"><%=el.name_class%></h5>
+              <h6 class="card-title">by: <%=el.owner.name%></h6>
+              <h6 class="card-title">level: <%=el.level%></h6>
+
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <p class="card-text">Sisa quota: <%=el.quota%></p>
+              
+              <a href="/classes/<%=el.id%>/enroll" class="btn btn-primary">enroll</a>
+              <a href="/classes/<%=el.id%>/edit" class="btn btn-primary">edit</a>
+
+            </div>
+        </div>
+        <%})%>
+
+    </div>
+
+
+
+
+
 </body>
 </html>
