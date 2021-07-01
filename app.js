@@ -12,6 +12,16 @@ app.use(session({
   saveUninitialized: true
 }))
 
+const myLogger = (req, res, next) => {
+  if (req.session.isLogin === true) {
+    next()
+  }
+  else {
+    let err = ['anda harus login terlebih dahulu']
+    res.redirect(`/login?err=${err}`)
+  }
+}
+
 app.use(express.urlencoded({extended:true}))
 app.use('/', routes)
 

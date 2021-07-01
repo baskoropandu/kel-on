@@ -7,21 +7,35 @@ class Controller {
     }
 
     static login(req, res) {
-        res.render('login')
+        let err = req.query.err
+        res.render('login', {err})
     }
 
     static postLogin(req, res) {
         let email = req.body.email
         let password = req.body.password
 
-        User.findAll({where:{email}})
+        User.findAll({
+                where: { email }
+             })
             .then(result=>{
-                if(result.length === 0){
-                    res.send('email not found')
-                }else if(result[0].password === password){
+                if (result.length === 0) {
+                    let error = ['Email Not Found']
+
+                    res.redirect(`/login?err=${error}`)
+
+                } else if (result[0].password === password) {
+                    req.session.isLogin = true
+                    req.session.is_instructor = result[0].is_instructor
+                    req.session.name = result[0].name
+                    req.session.UserId = result[0].id
+
+                    console.log(req.session);
                     res.redirect('/classes')
-                }else{
-                    res.send('wrong password')
+                } else {
+                    let error = ['Pasword Wrong']
+                    
+                    res.redirect(`/login?err=${error}`)
                 }
                 // res.send(result)
             })
@@ -56,6 +70,7 @@ class Controller {
     }
     
     static logout(req, res) {
+        req.session.destroy()
         res.redirect('/')
     }
 }

@@ -1,4 +1,4 @@
-const { Class, User } = require('../models/index');
+const { Class, User, UserClass } = require('../models/index');
 const { Op } = require("sequelize");
 
 class ClassController {
@@ -60,6 +60,44 @@ class ClassController {
                 console.log(err);
                 res.send(err)
             })
+    }
+
+    static getEnroll(req, res) {
+        let ClassId = +req.params.ClassId
+        let UserId = req.session.UserId
+        let is_instructor = req.session.is_instructor
+
+        if (!is_instructor) {
+            UserClass
+                .create({
+                    ClassId,
+                    UserId
+                })
+                .then(result => {
+                    return Class.findByPk(ClassId)
+                })
+                .then(theClass => {
+                    let quota = +theClass.quota - 1
+                    return Class.update({
+                        quota
+                    }, {
+                        where: {
+                            id: ClassId
+                        }
+                    })
+                })
+                .then(result => {
+                    res.redirect('/classes')                    
+                })
+                .catch(err => {
+                    console.log(err);
+                    res.send(err)
+                })
+        } else {
+            
+        }
+        // console.log(UserId, ClassId, is_instructor);
+
     }
 
 }

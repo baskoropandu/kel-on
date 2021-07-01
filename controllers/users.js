@@ -14,9 +14,9 @@ class Users{
             }
         })
         .then(result=> {
-            console.log(result);
-            res.send(result)
-            // res.render('students',{ students: result})
+            // console.log(result);
+            // res.send(result)
+            res.render('students',{ students: result})
         })
     }
     static getInstructors(req,res){
@@ -32,9 +32,7 @@ class Users{
             }
         })
         .then(result=> {
-            // console.log(result);
-            res.send(result)
-            // res.render('instructors',{ instructors: result})
+            res.render('instructors',{ instructors: result})
         })
     }
 }
