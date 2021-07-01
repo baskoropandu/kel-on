@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "postgres",
-    "password": "asdasd",
-    "database": "kelOnDb",
+    "password": "822413",
+    "database": "keLonDb",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },

@@ -13,13 +13,13 @@
 
 1. Association Many to Many (submit schema ke buddy-PP) ------ **DONE**
 2. CRUD ( CREATE, READ, UPDATE, DELETE ) ------ **DONE**
-3. Static Method (Model)
+3. Static Method (Model) ------ **DONE**
 4. Instance Method (Model) ------ **DONE**
-5. Helper ------ **DONE** 
-6. Hooks ------ **DONE**
+5. Helper ------ **DONE**
+6. Hooks done ------ **DONE**
 7. MVP (explore)
-8. Middleware  ------ **DONE**
-9. Session ------ **DONE**
+8. Middleware  * ------ **DONE**
+9. Session * ------ **DONE**
 10. Deploy pada Heroku (explore)
 
     ✅ Deploy Heroku Anti Gagal (Arnold, FAQ P-1 Discord Channel)
