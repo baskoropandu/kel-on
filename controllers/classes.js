@@ -3,6 +3,8 @@ const { Op } = require("sequelize");
 
 class ClassController {
     static getAll(req, res) {
+        let err = req.query.err
+
         Class
             .findAll({
                 include: {
@@ -17,14 +19,14 @@ class ClassController {
                 }
             })
             .then(listClass => {
-                // console.log(listClass[0].User);
-                res.render('listClass', {listClass})
+                res.render('listClass', {listClass, err})
             })
             .catch(err=> console.log(err))
     }
 
     static getAddClass(req, res) {
-        User
+        if (req.session.is_instructor) {
+            User
             .findAll({
                 where: {
                     is_instructor: {
@@ -41,6 +43,12 @@ class ClassController {
                 console.log(err);
                 res.send(err)
             })
+        } else {
+            let error = ['Anda bukan Instructor']
+
+            res.redirect(`/classes?err=${error}`)        
+        }
+        
     }
 
     static postAddClass(req, res) {
@@ -94,7 +102,8 @@ class ClassController {
                     res.send(err)
                 })
         } else {
-            
+            let error = ['Anda bukan student']
+            res.redirect(`/classes?err=${error}`)
         }
         // console.log(UserId, ClassId, is_instructor);
 

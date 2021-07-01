@@ -30,20 +30,20 @@ class Controller {
                     req.session.name = result[0].name
                     req.session.UserId = result[0].id
 
-                    console.log(req.session);
+                    // console.log(req.session);
                     res.redirect('/classes')
                 } else {
                     let error = ['Pasword Wrong']
                     
                     res.redirect(`/login?err=${error}`)
                 }
-                // res.send(result)
             })
         // res.redirect('/classes')
     }
 
     static register(req, res) {
-        res.render('register')
+        let err = req.query.err
+        res.render('register', {err})
     }
 
     static postregister(req, res) {
@@ -58,14 +58,26 @@ class Controller {
             newUser.is_instructor = false
         }
         
-        User
+        User            
             .create(newUser)
             .then(data => {
                 res.redirect(`/login`)
             })
             .catch(err => {
-                console.log(err);
-                res.send(err)
+                if (err.name === 'SequelizeValidationError') {
+                    let messageError = err.errors.map(item => item.message)
+
+                    res.redirect(`/register?err=${messageError}`)
+                }
+                else if (err.name === 'SequelizeUniqueConstraintError') {
+                    let messageError = ['Email already registered']
+                    
+                    res.redirect(`/register?err=${messageError}`)
+                }                  
+                 else {
+                    console.log(err);
+                    res.send(err)                    
+                }
             })
     }
     

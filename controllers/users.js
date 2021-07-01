@@ -3,21 +3,22 @@ const {Op} = require('sequelize')
 
 class Users{
     static getStudents(req,res){
-        User.findAll({
-            where:{
-                is_instructor: {
-                    [Op.eq]: 'false'
+        User
+            .findAll({
+                where:{
+                    is_instructor: {
+                        [Op.eq]: 'false'
+                    }
+                },
+                include:{
+                    model: Class
                 }
-            },
-            include:{
-                model: Class
-            }
-        })
-        .then(result=> {
-            // console.log(result);
-            // res.send(result)
-            res.render('students',{ students: result})
-        })
+            })
+            .then(result=> {
+                // console.log(result);
+                // res.send(result)
+                res.render('students',{ students: result})
+            })
     }
     static getInstructors(req,res){
         User.findAll({
