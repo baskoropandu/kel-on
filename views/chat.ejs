@@ -46,7 +46,7 @@
 
     socket.emit('join')
     socket.on('message', (param) => {
-        param.text = `<%= objUser.status %> : ${param.text}`
+        param.text = `User : ${param.text}`
         $("#message-list").append(`
         <div class="card mt-1">
             <div class="card-body">

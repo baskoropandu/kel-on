@@ -29,6 +29,7 @@ class Controller {
                     req.session.is_instructor = result[0].is_instructor
                     req.session.name = result[0].name
                     req.session.UserId = result[0].id
+                    req.session[req.session.id] = result[0].name
 
                     // console.log(req.session);
                     res.redirect('/classes')
@@ -90,7 +91,7 @@ class Controller {
         let objUser = {}
         let is_instructor = req.session.is_instructor
 
-        objUser.name = req.session.name
+        objUser.name = req.session[req.session.id]
         if (is_instructor) {
             objUser.status = 'Instructor'
         } else {
