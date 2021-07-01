@@ -85,6 +85,20 @@ class Controller {
         req.session.destroy()
         res.redirect('/')
     }
+
+    static chatting(req, res) {
+        let objUser = {}
+        let is_instructor = req.session.is_instructor
+
+        objUser.name = req.session.name
+        if (is_instructor) {
+            objUser.status = 'Instructor'
+        } else {
+            objUser.status = 'Student'            
+        }
+
+        res.render('chat', {objUser})
+    }
 }
 
 module.exports = Controller
